@@ -1,0 +1,44 @@
+﻿@model IList<DataModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<a asp-action="create"
+				   asp-controller="Data" class="btn btn-primary"><i class="fa fa-plus"></i> Create new File</a>
+			</div>
+			<div class="box-body">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Title</th>
+							<th>View File</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>@item.Id</td>
+								<td>@item.Title</td>
+								@if (!string.IsNullOrEmpty(item.FileName))
+								{
+									<td><a href='~/uploads/@item.FileName' target="_blank"><i class="fa fa-eye"></i>View</a></td>
+								}
+								<td>
+									<a asp-action="edit" asp-controller="Data" asp-route-id="@item.Id" class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
+									<a asp-action="delete" asp-controller="Data" asp-route-id="@item.Id" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+									<a asp-action="Share" asp-controller="Data" asp-route-id="@item.Id" class="btn btn-primary btn-xs"><i class="fa fa-share"></i></a>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

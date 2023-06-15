@@ -1,0 +1,52 @@
+﻿@model IList<ShareModel>
+@{
+    ViewData["Title"] = "ShareInfo";
+}
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<h1>Shared File Staatus</h1>
+			</div>
+			<div class="box-body">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>S.No.</th>
+							<th>FileName</th>
+							<th>ReciverId</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						@{
+							int i = 1;
+						}
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>@i</td>
+								<td>@item.Data.Title</td>
+								<td>@item.Reciever.UserName</td>
+								<td>
+									@if (item.IsCompleted)
+									{
+										<a class="btn btn-success btn-xs">Sent</a>
+									}
+									else
+									{
+										<a class="btn btn-primary btn-xs">Pending</a>
+									}
+								</td>
+							</tr>
+							{
+								i++;
+							}
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+

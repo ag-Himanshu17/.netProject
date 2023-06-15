@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Share";
+}
+@if (TempData["SuccessMessage"] != null)
+{
+	<div class="alert alert-success">
+		@TempData["SuccessMessage"]
+	</div>
+}
+
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<h1>Share Your File</h1>
+			</div>
+			<div class="box-body">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>S.No.</th>
+							<th>Email</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						@{int i = 1;}
+						@foreach (var item in ViewBag.AllUser)
+						{
+							<tr>
+								<td>@i</td>
+								<td>@item.Email</td>
+								<td>
+									<a asp-action="Send" asp-controller="Data" asp-route-id="@item.Id" asp-route-fileId="@ViewBag.FileId" class="btn btn-primary btn-sm">Send</a>
+								</td>
+							</tr>
+							{ i++; }
+						}
+					</tbody>
+				</table>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
